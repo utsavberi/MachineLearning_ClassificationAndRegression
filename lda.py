@@ -4,6 +4,8 @@ __author__ = 'utsav'
 
 import pickle
 import numpy as np
+import matplotlib.pyplot as plt
+import myPlot as mplt
 
 def lda_learn(X, y):
     classes = np.unique(y)
@@ -55,6 +57,9 @@ def ldaTest(means,covmat,Xtest,ytest):
         ui = means[count]
         f.append(ui.dot(Cinv).dot(Xtest.T) - (.5) * ui.dot(Cinv).dot(ui.T))#+math.log(p[count]))
         count += 1
+
+    print "f"
+    print f
     predicted = np.array(classes)[np.argmax(np.array(f),axis=0)[0]]
     acc = np.mean((predicted.reshape(1,-1)[0]==ytest.reshape(1,-1)).astype(float)) * 100
     return str(acc)+"%"
@@ -69,9 +74,12 @@ def lda_test():
     xtest = data[2]
     ytest = data[3]
 
+    mplt.plot_classes(xtest,ytest)
+
     fit = lda_learn(x,y)
 
-    print ldaTest(fit[0],fit[1],x,y)
     print ldaTest(fit[0],fit[1],xtest,ytest)
+    plt.show()
+
 
 lda_test()
