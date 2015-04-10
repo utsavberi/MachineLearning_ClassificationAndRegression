@@ -30,20 +30,10 @@ def testOLERegression(w,Xtest,ytest):
     # Xtest = N x d
     # ytest = X x 1
     # Output:
-    # rmse
-    # bias = np.ones(Xtest.shape[0]).reshape((-1,1))
-    # Xtest = np.hstack((Xtest,bias))
-    # predicted = np.around(Xtest.dot(w))
-    # print np.hstack((predicted,ytest))
-    # acc = np.mean((predicted.reshape(1,-1)[0]==ytest.reshape(1,-1)).astype(float)) * 100
-    # # IMPLEMENT THIS METHOD
-    # print str(acc) + "%"
-    #(y-Xw)t (y-xw)
+
     Z = ytest-(Xtest.dot(w))
     Z = Z.T.dot(Z)
     N =  ytest.size
-    # print "dksl"
-    # print Z
 
     rmse = math.sqrt( Z[0][0]) / N
 
@@ -56,6 +46,8 @@ ytrain = data[1]
 xtest = data[2]
 ytest = data[3]
 W = learnOLERegression(xtrain,ytrain)
+
+
 
 print testOLERegression(W,xtest,ytest)
 
