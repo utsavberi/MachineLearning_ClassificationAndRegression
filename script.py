@@ -1,9 +1,7 @@
 import numpy as np
 from scipy.optimize import minimize
-from scipy.io import loadmat
 from math import sqrt
 from numpy.linalg import inv, det
-import scipy.io
 import matplotlib.pyplot as plt
 import pickle
 
@@ -136,7 +134,6 @@ def testOLERegression(w,Xtest,ytest):
 
     return rmse
 
-#
 # def regressionObjVal(w, X, y, lambd):
 #
 #     # compute squared error (scalar) and gradient of squared error with respect
@@ -146,8 +143,8 @@ def testOLERegression(w,Xtest,ytest):
 #     # IMPLEMENT THIS METHOD
 #     return error, error_grad
 #
-def regressionObjVal(w, X, y, lambd):
 
+def regressionObjVal(w, X, y, lambd):
     # compute squared error (scalar) and gradient of squared error with respect
     # to w (vector) for the given data X and y and the regularization parameter
     # lambda
@@ -157,9 +154,6 @@ def regressionObjVal(w, X, y, lambd):
     error = (((y - X.dot(w)).T).dot((y - X.dot(w))) / (2*N)) + ((lambd * ((w.T).dot(w))) / 2)
     error_grad = (((((w.T).dot((X.T).dot(X))) - ((y.T).dot(X))) / N) + ((w.T) * lambd)).T
     error_grad = np.ndarray.flatten(np.array(error_grad))
-
-    # print "error_grad shape: ", error_grad.shape
-
     return error, error_grad
 
 def mapNonLinear(x,p):
